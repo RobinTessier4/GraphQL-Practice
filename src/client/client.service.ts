@@ -1,4 +1,4 @@
-import { ClientPaginationArgs } from './dto/client-pagination.dto';
+import { ClientPaginationArgs } from './dto/client-pagination.dto'
 import { ClientUpdateInput, ClientUpdateOutput } from './dto/client-update.dto'
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
@@ -43,12 +43,14 @@ export class ClientService {
     return { clientId }
   }
 
-  async clientsPagination(args: ClientPaginationArgs): Promise<Client[]> {
-    const [nodes, totalCount] = await this.clientRepository.findAndCount({
-      skip: args.skip,
-      take: args.take,
-    })
-    return {nodes, totalCount}
+  async clientsList(): Promise<Client[]> {
+    const clients = await this.clientRepository.find()
+    return clients
   }
 
+  async clientById(clientId: Client['id']) : Promise<Client> {
+    const client = await this.clientRepository.findOneOrFail(
+      where: { id: clientId },
+    )
+  }
 }

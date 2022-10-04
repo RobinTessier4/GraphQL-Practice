@@ -8,7 +8,7 @@ export class ClientQueriesResolver {
   constructor(private readonly clientService: ClientService) {}
 
   @Query(() => [Client])
-  async clientList(@Args() args: ClientPaginationArgs) {
-    return this.clientService.clientsPagination(args)
+  async clientList() {
+    return this.clientService.clientsList()
   }
 }

@@ -2,17 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-interface Node {
-  id: ID!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
 type Client {
   id: ID!
   createdAt: DateTime!
@@ -22,6 +11,11 @@ type Client {
   mail: String!
   phone: String!
 }
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 type ClientDeleteOutput {
   clientId: ID!
@@ -48,7 +42,7 @@ type CompanyCreateOutput {
 
 type Query {
   sayHello: String!
-  clientList(skip: Int!, take: Int!): [Client!]!
+  clientList: [Client!]!
 }
 
 type Mutation {
