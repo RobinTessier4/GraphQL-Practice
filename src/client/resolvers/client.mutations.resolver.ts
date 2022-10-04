@@ -1,4 +1,4 @@
-import { ClientDeleteOutput } from './../dto/client-delete.dto';
+import { ClientDeleteOutput } from './../dto/client-delete.dto'
 import { ID } from '@nestjs/graphql'
 import {
   ClientUpdateOutput,
@@ -15,7 +15,7 @@ export class ClientMutationsResolver {
 
   @Mutation(() => ClientCreateOutput)
   async clientCreate(@Args('input') input: ClientCreateInput) {
-    return this.clientService.clientCreate(input)
+    return this.clientService.createClient(input)
   }
 
   @Mutation(() => ClientUpdateOutput)
@@ -23,13 +23,13 @@ export class ClientMutationsResolver {
     @Args({ name: 'clientId', type: () => ID }) clientId: Client['id'],
     @Args('input') input: ClientUpdateInput,
   ) {
-    return this.clientService.clientUpdate(clientId, input)
+    return this.clientService.updateClientById(clientId, input)
   }
 
   @Mutation(() => ClientDeleteOutput)
   async clientDelete(
     @Args({ name: 'clientId', type: () => ID }) clientId: Client['id'],
   ) {
-    return this.clientService.clientDelete(clientId)
+    return this.clientService.deleteClientById(clientId)
   }
 }

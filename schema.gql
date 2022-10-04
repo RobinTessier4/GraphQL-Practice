@@ -42,7 +42,8 @@ type CompanyCreateOutput {
 
 type Query {
   sayHello: String!
-  clientList: [Client!]!
+  getClients: [Client!]!
+  getClientById(id: String!): Client!
 }
 
 type Mutation {

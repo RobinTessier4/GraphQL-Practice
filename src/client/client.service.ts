@@ -14,28 +14,24 @@ export class ClientService {
     private readonly clientRepository: Repository<Client>,
   ) {}
 
-  async clientCreate(input: ClientCreateInput): Promise<ClientCreateOutput> {
+  async createClient(input: ClientCreateInput): Promise<ClientCreateOutput> {
     const newClient = this.clientRepository.create(input)
     const client = await this.clientRepository.save(newClient)
     return { client }
   }
 
-  async clientUpdate(
+  async updateClientById(
     clientId: Client['id'],
     input: ClientUpdateInput,
   ): Promise<ClientUpdateOutput> {
     const client = await this.clientRepository.findOneOrFail({
       where: { id: clientId },
     })
-    client.firstName = input.firstName
-    client.lastName = input.lastName
-    client.phone = input.phone
-    client.mail = input.mail
-    await client.save()
+    await this.clientRepository.update({ id: clientId }, input)
     return { client }
   }
 
-  async clientDelete(clientId: Client['id']): Promise<ClientDeleteOutput> {
+  async deleteClientById(clientId: Client['id']): Promise<ClientDeleteOutput> {
     const client = await this.clientRepository.findOneOrFail({
       where: { id: clientId },
     })
@@ -43,14 +39,13 @@ export class ClientService {
     return { clientId }
   }
 
-  async clientsList(): Promise<Client[]> {
-    const clients = await this.clientRepository.find()
-    return clients
+  async getClients(): Promise<Client[]> {
+    return await this.clientRepository.find()
   }
 
-  async clientById(clientId: Client['id']) : Promise<Client> {
-    const client = await this.clientRepository.findOneOrFail(
-      where: { id: clientId },
-    )
+  async getClientById(id: Client['id']): Promise<Client> {
+    return await this.clientRepository.findOneOrFail({
+      where: { id },
+    })
   }
 }
