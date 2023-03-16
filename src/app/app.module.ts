@@ -7,8 +7,11 @@ import { join } from 'path'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { AppResolver } from './app.resolver'
-import { ClientModule } from './client/client.module'
-import { CompanyModule } from './company/company.module'
+import { ProductModule } from '../product/product.module'
+import { CategoryModule } from '../category/category.module'
+import { UserModule } from '../user/user.module'
+import { OrderModule } from '../order/order.module'
+import { CompanyModule } from 'src/company/company.module'
 
 @Module({
   imports: [
@@ -16,8 +19,9 @@ import { CompanyModule } from './company/company.module'
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
-      debug: false,
       playground: true,
+      sortSchema: true,
+      debug: true,
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -33,8 +37,11 @@ import { CompanyModule } from './company/company.module'
         synchronize: true,
       }),
     }),
-    ClientModule,
-    CompanyModule,
+    ProductModule,
+    CategoryModule,
+    UserModule,
+    OrderModule,
+    CompanyModule
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver],
