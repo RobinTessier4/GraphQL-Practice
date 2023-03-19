@@ -4,9 +4,9 @@ import { Product } from './entities/product.entity'
 
 @Injectable()
 export class ProductService {
-  constructor(private readonly productRepository: Repository<Product>) {}
+  // constructor(private readonly productRepository: Repository<Product>) {}
 
-  async findOne(id: Product['id']): Promise<Product> {
-    return this.productRepository.findOneBy({ id })
-  }
+  // async findOne(id: Product['id']): Promise<Product> {
+  //   return this.productRepository.findOneBy({ id })
+  // }
 }

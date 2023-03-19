@@ -4,10 +4,10 @@ import { ProductService } from './product.service'
 
 @Resolver()
 export class ProductResolver {
-  constructor(private readonly productService: ProductService) {}
+  // constructor(private readonly productService: ProductService) {}
 
-  @Query()
-  findOneProduct(id: Product['id']): Promise<Product> {
-    return this.productService.findOne(id)
-  }
+  // @Query()
+  // findOneProduct(id: Product['id']): Promise<Product> {
+  //   return this.productService.findOne(id)
+  // }
 }

@@ -12,16 +12,20 @@ import { CategoryModule } from '../category/category.module'
 import { UserModule } from '../user/user.module'
 import { OrderModule } from '../order/order.module'
 import { CompanyModule } from 'src/company/company.module'
+import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core'
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
+      cache: 'bounded',
       autoSchemaFile: 'schema.gql',
-      playground: true,
+      playground: false,
       sortSchema: true,
       debug: true,
+      introspection: true,
+      plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -41,7 +45,7 @@ import { CompanyModule } from 'src/company/company.module'
     CategoryModule,
     UserModule,
     OrderModule,
-    CompanyModule
+    CompanyModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver],
