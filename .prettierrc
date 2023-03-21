@@ -1,6 +1,23 @@
 {
   "singleQuote": true,
   "trailingComma": "all",
-  "tabWidth": 2,
-  "semi": false
+  "semi": false,
+  "arrowParens": "always",
+  "bracketSameLine": false,
+  "bracketSpacing": true,
+  "embeddedLanguageFormatting": "auto",
+  "htmlWhitespaceSensitivity": "css",
+  "insertPragma": false,
+  "jsxSingleQuote": false,
+  "printWidth": 100,
+  "proseWrap": "always",
+  "quoteProps": "consistent",
+  "requirePragma": false,
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "importOrderParserPlugins": [
+    "typescript",
+    "jsx",
+    "decorators-legacy"
+  ]
 }
