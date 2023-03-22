@@ -1,30 +1,44 @@
-import { Field, ObjectType } from '@nestjs/graphql'
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Field, ObjectType } from '@nestjs/graphql';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 @ObjectType()
 export class Product {
   @PrimaryGeneratedColumn()
   @Field()
-  id: string
+  id: string;
 
   @Column()
   @Field()
-  name: string
+  name: string;
 
   @Column()
   @Field()
-  description: string
+  description: string;
 
   @Column()
   @Field()
-  price: number
+  price: number;
 
   @Column()
   @Field()
-  category: string
+  category: string;
 
   @Column()
   @Field()
-  image: string
+  image: string;
+
+  @CreateDateColumn()
+  @Field(() => Date)
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  @Field(() => Date)
+  updatedAt: Date;
 }

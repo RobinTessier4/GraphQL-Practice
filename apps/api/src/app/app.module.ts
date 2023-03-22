@@ -1,18 +1,18 @@
-import { Module } from '@nestjs/common'
-import { GraphQLModule } from '@nestjs/graphql'
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
-import { ConfigModule, ConfigService } from '@nestjs/config'
-import { TypeOrmModule } from '@nestjs/typeorm'
-import { join } from 'path'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
-import { AppResolver } from './app.resolver'
-import { ProductModule } from '../product/product.module'
-import { CategoryModule } from '../category/category.module'
-import { UserModule } from '../user/user.module'
-import { OrderModule } from '../order/order.module'
-import { CompanyModule } from '../company/company.module'
-import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core'
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { GraphQLModule } from '@nestjs/graphql';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
+import { join } from 'path';
+
+import { CategoryModule } from '../category/category.module';
+import { OrderModule } from '../order/order.module';
+import { ProductModule } from '../product/product.module';
+import { UserModule } from '../user/user.module';
+import { AppController } from './app.controller';
+import { AppResolver } from './app.resolver';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -20,7 +20,7 @@ import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core'
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       cache: 'bounded',
-      autoSchemaFile: 'schema.gql',
+      autoSchemaFile: join(process.cwd(), 'apps/api/src/schema.gql'),
       playground: false,
       sortSchema: true,
       debug: true,
@@ -45,7 +45,6 @@ import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core'
     CategoryModule,
     UserModule,
     OrderModule,
-    CompanyModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver],
