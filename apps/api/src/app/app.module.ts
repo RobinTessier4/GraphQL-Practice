@@ -37,7 +37,7 @@ import { AppService } from './app.service';
         username: configService.get('DATABASE_USER'),
         password: configService.get('DATABASE_PASSWORD'),
         database: configService.get('DATABASE_DB'),
-        entities: [join(__dirname, '**', '*.model.{ts,js}')],
+        entities: [join(__dirname, './src/**/entities/*.entity.{ts,js}')],
         synchronize: true,
       }),
     }),

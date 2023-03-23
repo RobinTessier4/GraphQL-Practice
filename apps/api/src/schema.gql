@@ -51,8 +51,9 @@ type Query {
 type User {
   createdAt: DateTime!
   email: String!
+  firstName: String!
   id: String!
-  name: String!
+  lastName: String!
   orders: [Order!]!
   updatedAt: DateTime!
 }
